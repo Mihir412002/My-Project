@@ -21,46 +21,44 @@ form.addEventListener('submit',(e)=>{
 //We need to get this thing when we just because of this link if PC in a browser what will get if you could sitting in our brother she will get something like this this contains everything is contained everything in some dictionary format it contains si koi name and the price is in which you want and the current price volume change and stamp got everything from speak modified for BTC us we got this thing and if you want for dog USD then it should come the right there should come so if you put off USD to get everything for the dog and us so we can get Just a first download axios documentation from GitHub just go to get Just copy and put HTML page just before
 //when ever we fetch api we use sync function only because sync func are made for api works on some promises so it take time
 const fetchPrice = async(ctype) =>{
-    const r = await axios.get(`https://api.coinstats.app/public/v1/coins/${ctype}?currency=USD`);
-    console.log(r.data.coin.price);
+    const r = await axios.get(`https://api.coinstats.app/public/v1/coins/${ctype}?currency=INR`);
+    // console.log(r);
+    //console.log(r.data.coin.price);
     const price = r.data.coin.price;
+    const rnk = r.data.coin.rank;
     const volume = r.data.coin.volume;
     const change = r.data.coin.priceChange1d;
+    const mcap = r.data.coin.marketCap;
     const base = r.data.coin.name;
-    const target = 'USD';
+    const target = 'INR';
     
 
-    res.innerHTML = `<tr style="background-color:blue; color:white; font-weight:700">
-    <td>
-        Property
-    </td>
-    <td>
-        Value
-    </td>
-</tr>
-<tr>
-    <td>
-      ${base}
-    </td>
-    <td>${price} ${target}</td>
-</tr>
-<tr>
-    <td>
-        Volume
-    </td>
-    <td>${volume}</td>
-</tr>
-<tr>
-    <td>
-        Change
-    </td>
-    <td>${change}</td>
-</tr>`
-   
-  upd = setTimeout(()=>fetchPrice(ctype),10000);
+    res.innerHTML = `<tr style = "color:#eec614">
+    <td class = "bg-secondary bg-gradient"><b>Property</b></td>
+    <td class = "bg-secondary bg-gradient"><b>Value</b></td>
+    </tr>
+    <tr style = "color:#eec614">
+        <td>${base}</td>
+        <td>${price} ${target}</td>
+    </tr>
+    <tr style = "color:#eec614">
+        <td>Rank</td>
+        <td>${rnk}</td>
+    </tr> 
+    <tr style = "color:#eec614">
+        <td>Volume</td>
+        <td>${volume}</td>
+    </tr>
+    <tr style = "color:#eec614">
+        <td>Change</td>
+        <td>${change}%</td>
+    </tr>
+    <tr style = "color:#eec614">
+        <td>Market Cap</td>
+        <td>${mcap}</td>
+    </tr>`;
 
-    
-    
+    upd = setTimeout(()=>fetchPrice(ctype), 10000);
 }
 
 
